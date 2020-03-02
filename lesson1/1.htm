@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>控制div属性</title>
+</head>
+<style>
+    #outer{width:500px;margin:0 auto;padding:0;text-align:center;}
+    #div1{width:100px;height:100px;background:black;margin:10px auto;display:block;}
+    </style>
+<body>
+    <div id="outer">
+        <input type="button" value="变宽" />
+        <input type="button" value="变高" />
+        <input type="button" value="变色" />
+        <input type="button" value="隐藏" />
+        <input type="button" value="重置" />
+        <div id="div1"></div>
+        </div>
+</body>
+<script>
+    // var widthBtn = document.getElementById('changeWidth');
+    // var heightBtn = document.getElementById('changeHeight');
+    // var colorBtn = document.getElementById('changeColor');
+    // var hiddenBtn = document.getElementById('hidden');
+    // var resetBtn = document.getElementById('reset');
+
+    // var box = document.getElementsByTagName('div')[1];
+    // var btns = document.getElementsByTagName('button');
+    // var classNames = ['wider', 'higher', 'red', 'hidden', 'normal'];
+    // for (var i = 0; i < btns.length; i++) {
+
+    //     btns[i].onclick = function() {
+    //         // if (classNames[i] === 'normal') {
+    //         //     box.className = classNames[i];
+    //         // }
+    //         if (box.className.indexOf(classNames[i]) === -1) {
+    //             box.className += ' ' + classNames[i];
+    //         }
+    //     }
+    // }
+    
+    // widthBtn.onclick = function() {
+    //     if (box.className.indexOf('wider') === -1) {
+    //         box.className += ' wider';
+    //     }
+    // }
+    // heightBtn.onclick = function() {
+    //     if (box.className.indexOf('higher') === -1) {
+    //         box.className += ' higher';
+    //     }
+    // }
+    // colorBtn.onclick = function() {
+    //     if (box.className.indexOf('red') === -1) {
+    //         box.className += ' red';
+    //     }
+    // }
+    // hiddenBtn.onclick = function() {
+    //     if (box.className.indexOf('hidden') === -1) {
+    //         box.className += ' hidden';
+    //     }
+    // }
+    // resetBtn.onclick = function() {
+    //     box.className = 'normal';
+    // }
+
+    var changeStyle = function (elem, attr, value)
+{
+	elem.style[attr] = value
+};
+    var oBtn = document.getElementsByTagName("input");
+	var oDiv = document.getElementById("div1");
+	var oAtt = ["width","height","background","display","display"];
+	var oVal = ["200px","200px","red","none","block"];
+
+	for (var i = 0; i < oBtn.length; i++)
+	{
+		oBtn[i].index = i;
+		oBtn[i].onclick = function ()
+		{
+			this.index == oBtn.length - 1 && (oDiv.style.cssText = "");
+            // console.log(this.index == oBtn.length - 1 && (oDiv.style.cssText = ""));
+            // 作用域链，会从前端开始向后寻找index
+            console.log(oBtn[i] === this);
+            changeStyle(oDiv, oAtt[this.index], oVal[this.index])
+        }	
+	}
+
+</script>
+</html>

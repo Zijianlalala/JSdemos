@@ -1,0 +1,52 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>记住密码提示框</title>
+</head>
+<style>
+    body, input, p{
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font: 12px/1.5 Tahoma;
+    }
+    .save {
+        width: 200px;
+        margin: 10px auto;
+        text-align: center;
+    }
+    input {
+        margin-right: 5px;
+        vertical-align: middle;
+    }
+    #notice {
+        padding: 5px;
+        margin-top: 5px;
+        background: #ffefa4;
+        border: 1px solid #f90;
+        display: none;
+    }
+</style>
+
+<body>
+    <div class="save">
+        <label>
+            <input type="checkbox">两周内自动登录
+        </label>
+        <div id="notice">为了您的信息安全，请不要在网吧或公用电脑上使用此功能！</div>
+    </div>
+</body>
+<script>
+    var label = document.getElementsByTagName('label')[0];
+    var notice = document.getElementById('notice');
+    label.onmouseover = function() {
+        notice.style.display = 'block';
+    }
+    label.onmouseout = function() {
+        notice.style.display = 'none';
+    }
+</script>
+</html>

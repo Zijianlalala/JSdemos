@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数接受参数并弹出</title>
+</head>
+
+<body>
+    <p><input type="text" name="city" value="北京市"></p>
+    <p><input type="text" name="area" value="朝阳区"></p>
+    <button>传参</button>
+</body>
+<script>
+    window.onload = function () {
+        var button = document.getElementsByTagName('button')[0];
+        var inputs = document.getElementsByTagName('input');
+        button.onclick = function () {
+            // for (var p in inputs) {
+            //     alert(inputs[p].value);
+            //     console.log(p);
+            // }
+            for (var i = 0; i < inputs.length; i++) {
+                alert(inputs[i].value);
+            }
+        }
+    }
+</script>
+
+</html>

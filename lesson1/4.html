@@ -1,0 +1,42 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用循环将三个Div变成红色</title>
+</head>
+<style>
+    #down div {
+        width: 100px;
+        height: 100px;
+        background: black;
+        float: left;
+        margin: 0 5px;
+    }
+
+    #down {
+        margin: 10px auto;
+        width: 330px;
+        height: 100px;
+    }
+</style>
+
+<body>
+    <center><button>点击将DIV变成红色</button></center>
+    <div id="down">
+        <div class="form"></div>
+        <div class="form"></div>
+        <div class="form"></div>
+    </div>
+</body>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    var blocks = document.getElementById('down').getElementsByTagName('div');
+    button.onclick = function() {
+        for (var p in blocks) {
+            blocks[p].style.background = 'red';
+        }
+    }
+
+</script>
+</html>
