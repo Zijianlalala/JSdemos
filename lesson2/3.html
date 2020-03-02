@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>求和</title>
+</head>
+<style>
+    body, div, input, button {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        font-size: 12px;
+        color: grey;
+    }
+    #outer {
+        width: 600px;
+        margin: 10px auto;
+    }
+    input {
+        width: 300px;
+    }
+    button {
+        margin-top: 10px;
+        display: block;
+    }
+</style>
+<body>
+    <div id="outer">
+        <input type="text">输入数字求和，数字之间用半角","号分隔
+        <button>求和</button>
+        <p id="outcome"></p>
+    </div>
+</body>
+<script>
+    function sum() {
+        if (!document.getElementsByTagName) return false;
+        if (!document.createElement) return false;
+        if (!document.createTextNode) return false;
+        if (!document.getElementById) return false;
+        // 获取元素
+        // var outer = document.getElementById('outer');
+        var outcome = document.createElement('p');
+        var s = document.getElementsByTagName('input')[0];
+        var btn = document.getElementsByTagName('button')[0];
+        var outcome = document.getElementById('outcome');
+        // 监听键盘按下后的事件
+        s.onkeyup = function() {
+            this.value = this.value.replace(/[^(\d)|(,)]/,'');
+        }
+        btn.onclick = function() {
+            var numbers = s.value.split(',');
+            var result = 0;
+            for( var i = 0; i < numbers.length; i++) {
+                result += Number(numbers[i]);
+            }
+            outcome.textContent = result;
+        }
+    }
+    window.onload = sum;
+</script>
+</html>

@@ -1,19 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>百度输入法</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        .elem {
+            width: 70px;
+            margin: 10px auto;
+        }
+        ul {
+            list-style: none;
+            border: 1px solid blue;
+        }
+
+        #content {
+            width: 35px;
+        }
+        .state {
+            /* 隐藏内容 */
+            display: none;
+        }
+
+        li:last-child {
+            border-top: 1px solid blue;
+        }
+
+        a {
+            /* 取消链接下划线 */
+            text-decoration: none;
+        }
+    </style>
 </head>
+
 <body>
-    <div>
+    <div id="elem">
         <button>输入法</button>
     </div>
 </body>
 <script>
+    // 创建列表
+    function createList() {
+        if (!document.getElementsByTagName) return false;
+        if (!document.getElementById) return false;
+        if (!document.createElement) return false;
+        if (!document.createTextNode) return false;
+        // DOM创建相应元素
+        var elem = document.getElementById('elem');
+        var btn = document.getElementsByTagName('button')[0];
+        var div = document.createElement('div');
+        div.setAttribute('id', 'content');
+        var ul = document.createElement('ul');
+        var contents = ['手写', '拼音', '关闭'];
+        for (var i = 0; i < contents.length; i++) {
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            var txt = document.createTextNode(contents[i]);
+            a.setAttribute('href', '#');
+            a.appendChild(txt);
+            li.appendChild(a);
+            ul.appendChild(li);
+        }
+        // 出现
+        div.appendChild(ul);
+        elem.appendChild(div);
+        div.className = 'state';
+    }
     function prepareButton() {
         if (!document.getElementsByTagName) return false;
+        if (!document.getElementById) return false;
+        // 打开按钮
         var btn = document.getElementsByTagName('button')[0];
+        // 下拉内容
+        var content = document.getElementById('content');
+        btn.onclick = function() {
+            content.className = content.className == 'state' ? '':'state';
+        }
+        // 关闭链接
+        var links = document.getElementsByTagName('a');
+        var shutdownAnchor = links[links.length-1];
+        shutdownAnchor.onclick = function() {
+            content.className = 'state';
+            // hidden = !hidden;
+        }
+    }
+    window.onload = function() {
+        createList();
+        prepareButton();
     }
 </script>
+
 </html>
