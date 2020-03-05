@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易JS年历</title>
+</head>
+<style>
+    body, div, ul, p{
+        margin: 0;
+        padding: 0;
+    }
+    #outer {
+        background: #eaeaea;
+        border: 1px solid #ccc;
+        width: 300px;
+        height: 300px;
+        margin: 10px auto;
+    }
+    ul {
+        margin: 10px 0px 10px 20px;
+        /* border: 1px solid red; */
+        width: 280px;
+        height: 200px;
+        list-style: none;
+    }
+
+    li {
+        text-align: center;
+        padding: 2px 0 1px 0;
+        /* border: 1px solid blue; */
+        margin: 12px 13px 0 0;
+        width: 54px;
+        height: 49px;
+        float: left;
+        color: white;
+        background: grey;
+    }
+     li p {
+         font-weight: bold;
+         font-size: 20px;
+     }
+    #details {
+        border: 1px solid #fff;
+        margin: 0 20px 0 20px;
+        height: 55px;
+        padding: 5px 5px 0 5px;
+        background: #F1F1F1;
+    }
+
+    .title {
+        font-weight: bold;
+    }
+    .content {
+        font-size: 10px;
+    }
+    .current {
+        background: white;
+        color: black;
+        /* border: 1px solid black; */
+    }
+</style>
+<body>
+    <div id="outer">
+       <div id="months">
+           <ul>
+               <li><p>1</p>JUN</li>
+               <li><p>2</p>FER</li>
+               <li><p>3</p>MAR</li>
+               <li><p>4</p>APR</li>
+               <li><p>5</p>MAY</li>
+               <li class="current"><p>6</p>JUN</li>
+               <li><p>7</p>JUL</li>
+               <li><p>8</p>AUG</li>
+               <li><p>9</p>SEP</li>
+               <li><p>10</p>OCT</li>
+               <li><p>11</p>NOV</li>
+               <li><p>12</p>DEC</li>
+           </ul>
+       </div> 
+       <div id="details">
+           <p class="title">1月节日</p>
+           <p class="content">元旦：1月1日至3日放假三天。</p>
+       </div>
+    </div>
+</body>
+<script>
+    function resetClass(items) {
+        for (var i = 0; i < items.length; i++) {
+            items[i].className = '';
+        }
+    } 
+    window.onload = function() {
+        var items = document.getElementsByTagName('li');
+        var details = document.getElementById('details');
+        var detail = details.getElementsByTagName('p');
+        for (var i = 0; i < items.length; i++) {
+            items[i].index = i;
+            items[i].onmouseover = function() {
+                resetClass(items);
+                this.className = 'current';
+                detail[0].textContent = this.index + 1 + '月节日';
+                detail[1].textContent = this.index + 1 + '的传统节日是Blabla...';
+            }
+        }
+    }
+</script>
+</html>

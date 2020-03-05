@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数传参改变属性</title>
+</head>
+<style>
+    body,
+    div {
+        padding: 0;
+        margin: 0;
+    }
+
+    #outer {
+        width: 300px;
+        margin: 10px auto;
+    }
+
+    #box {
+        width: 200px;
+        height: 200px;
+        background: black;
+        font-size: 10px;
+        color: white;
+    }
+
+    label {
+        width: 5em;
+        display: inline-block;
+        text-align: right;
+    }
+
+    body {
+        color: #333;
+        font: 12px/1.5 Tahoma;
+        padding-top: 10px;
+    }
+</style>
+
+<body>
+    <div id="outer">
+        <p><label>属性名：</label><input type="text" name="attributeName" value="background">
+        </p>
+        <p><label>属性值：</label><input type="text" name="attributeValue" value="black">
+        </p>
+        <p><label></label><button>确定</button> <button>重置</button></p>
+        <div id="box">
+            在上方输入框输入"属性名"及"属性值"，点击确定按钮查看效果。
+        </div>
+    </div>
+</body>
+<script>
+    function changeStyle(elem, name, value) {
+        elem.style[name] = value;
+    }
+    function changeAttribute() {
+        var in1 = document.getElementsByTagName('input')[0];
+        var in2 = document.getElementsByTagName('input')[1];
+        var submit = document.getElementsByTagName('button')[0];
+        var reset = document.getElementsByTagName('button')[1];
+        var box = document.getElementById('box');
+        submit.onclick = function () {
+            //input都是动态显示的
+            changeStyle(box, in1.value, in2.value);
+        }
+        reset.onclick = function () {
+            // 克隆一下之前的对象，然后再拿过来
+            box.removeAttribute('style');
+        }
+    }
+    window.onload = changeAttribute;
+</script>
+
+</html>

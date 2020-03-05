@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易选项卡</title>
+</head>
+<style>
+    body,
+    ul,li {
+        padding: 0;
+        margin: 0;
+        font-size: 10px;
+    }
+
+    #outer {
+        width: 500px;
+        margin: 10px auto;
+        height: 300px;
+        border: 1px solid #111;
+    }
+
+    #nav {
+        background: #000;
+        color: #fff;
+    }
+    #nav ul {
+        margin: 0;
+        height: 32px;
+        list-style: none;
+        border-bottom: 1px solid #111;
+    }
+
+    #nav li {
+        margin: 0;
+        width: 78px;
+        height: 32px;
+        text-align: center;
+        line-height: 32px;
+        border-right: 1px solid #111;
+        float: left;
+        cursor: pointer;
+    }
+    .current {
+        background: #ccc;
+        color: black;
+    }
+    #content {
+        margin-left: 30px;
+    }
+    #content li {
+        margin-top: 10px;
+    }
+</style>
+
+<body>
+    <div id="outer">
+        <div id="nav">
+            <ul>
+                <li class="current">第一课</li>
+                <li>第二课</li>
+                <li>第三课</li>
+            </ul>
+        </div>
+        <div id="content" class="main">
+                <ul>
+                    <li>网页特效原理分析</li>
+                    <li>响应用户操作</li>
+                    <li>提示框效果</li>
+                    <li>事件驱动</li>
+                    <li>元素属性操作</li>
+                </ul>
+        </div>
+    </div>
+</body>
+<script>
+    function resetClass(elems) {
+        for (var i = 0; i < elems.length; i++) {
+            elems[i].className = '';
+        }
+    }
+    function fillContent(elem, items) {
+        // 删掉elem的所有子节点
+        while(elem.firstChild) {
+            elem.removeChild(elem.firstChild);
+        }
+        var ul = document.createElement('ul');
+        for (var i = 0; i < items.length; i++) {
+            var li = document.createElement('li');
+            var txt = document.createTextNode(items[i]);
+            li.append(txt);
+            ul.appendChild(li);
+        }
+        elem.appendChild(ul);
+    }
+    window.onload = function() {
+        var nav = document.getElementById('nav');
+        var btns = nav.getElementsByTagName('li');
+        var content = document.getElementById('content');
+        var items2 = ['改变网页背景颜色', '函数传参', '数组', '字符串连接'];
+        var items1 = ['网页特效原理分析', '响应用户操作', '提示框效果', '事件驱动', '元素属性操作'];
+        var items3 = ['JS组成','变量','闭包', '运算符', '定时器技术','程序调试方法'];
+        var items = [items1, items2, items3];
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].index = i;
+            btns[i].onmouseover = function() {
+                resetClass(btns);
+                this.className = 'current';
+                fillContent(content, items[this.index]);
+            }
+        }
+    }
+</script>
+</html>

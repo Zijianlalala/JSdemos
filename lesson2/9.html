@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下拉菜单</title>
+</head>
+<style>
+    body,
+    button,
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+    #outer {
+        width: 300px;
+        margin: 10px auto;
+    }
+
+    #nav {
+        width: 250px;
+        /* margin: 10px auto; */
+        height: 35px;
+        text-align: left;
+        /* padding: 5px 0 5px 10px; */
+        font-size: 15px;
+        background: #CED3D7;
+        color: #57646e;
+        position: relative;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+
+    #nav div {
+        margin: 6px;
+        color: grey;
+    }
+
+    .left {
+        position: absolute;
+        left: 10px;
+    }
+
+    .right{
+        position: absolute;
+        right: 0px;
+    }
+    ul {
+        list-style: none;
+        font-size: 12px;
+        cursor: pointer;
+        /* padding: 5px 0 5px 10px; */
+    }
+    ul li {
+        padding: 5px;
+    }
+    #content {
+        background: #e9edf2;
+        border: 1px solid red;
+        border-top: 0px;
+        width: 250px;
+        color: #6b7980;
+        /* margin: 0px auto; */
+    }
+    #content a {
+        color: #6b7980;
+        text-decoration: none;
+    }
+    .current {
+        text-decoration: underline;
+        background: #fff;
+    }
+    .hidden {
+        display: none;
+    }
+
+</style>
+
+<body>
+    <div id="outer">
+        <div id="nav">
+            <div class="left">播放列表...</div>
+            <div class="right">↑</div>
+        </div>
+        <div id="content" class="hidden">
+            <ul>
+                <li><a href="#">玩家之徒 - 蔡依林</a></li>
+                <li><a href="#">原谅我就是这样的女生 - 戴佩妮</a></li>
+                <li><a href="#">猜不透 - 丁当</a></li>
+                <li><a href="#">自导自演 - 周杰伦</a></li>
+                <li><a href="#">浪漫窝 - 旋子</a></li>
+                <li><a href="#">流年 - 王菲</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script>
+    function resetClass(items) {
+        for (var i = 0; i < items.length; i++) {
+            items[i].className = '';
+        }
+    }
+    window.onload = function() {
+        var items = document.getElementsByTagName('li');
+        var nav = document.getElementById('nav');
+        var mark = nav.getElementsByTagName('div')[1];
+        var content = document.getElementById('content');
+        for (var i = 0; i < items.length; i++) {
+            items[i].onmouseover = function() {
+                resetClass(items);
+                this.className = 'current';
+                console.log(this.textContent);
+            }
+        }
+        nav.onclick = function() {
+            content.className = content.className == 'hidden'?'':'hidden';
+            mark.textContent = mark.textContent == '↓'?'↑':'↓';
+        }
+    }
+</script>
+</html>

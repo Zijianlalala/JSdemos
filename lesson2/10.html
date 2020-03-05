@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>提示框效果</title>
+</head>
+<style>
+    h3,ul,li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    h3 {
+        margin-top: 10px;
+    }
+
+    #outer {
+        text-align: center;
+        border: 1px solid #111;
+        width: 700px;
+        overflow: hidden;
+        margin: 0 auto;
+        padding: 0 0 10px 10px;
+    }
+
+    #imgList li {
+        position: relative;
+        float: left;
+        width: 110px;
+        height: 110px;
+        border: 1px solid black;
+        margin: 10px 10px 0 0;
+    }
+    #imgList li img {
+        position: absolute;
+        top: -14px;
+        left: -14px;
+        float: left;
+        border: 2px solid #999;
+        cursor: crosshair;
+        display: none;
+        /* filter: alpha(opacity=30); */
+        /* opacity: 0.3; */
+    }
+    .zindex {
+        z-index: 1;
+    }
+</style>
+<body>
+    <div id="outer">
+        <h3>名车车标展示-鼠标移过显示车标</h3>
+        <ul id="imgList">
+            <li> <img src="images/1.jpg" alt=""><h5>BMW</h5>宝马汽车</li>
+            <li><img src="images/2.jpg" alt=""><h5>Alph Romen</h5>阿尔法-罗密欧</li>
+            <li><img src="images/3.jpg" alt=""><h5>Skoda</h5>斯柯达</li>
+            <li> <img src="images/4.jpg" alt=""><h5>Volkwagen</h5> 大众汽车</li>
+            <li> <img src="images/5.jpg" alt=""><h5>Saab</h5>萨布牌轿车</li>
+            <li> <img src="images/6.jpg" alt=""><h5>Lamborghini</h5>兰博基尼</li>
+            <li> <img src="images/7.jpg" alt=""><h5>Porshce</h5>保时捷</li>
+            <li> <img src="images/8.jpg" alt=""><h5>Peugeot</h5>标志</li>
+            <li> <img src="images/9.jpg" alt=""><h5>Mercedes1</h5>奔驰</li>
+            <li> <img src="images/10.jpg" alt=""><h5>Bulck</h5>别克汽车</li>
+        </ul>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+        var items = document.getElementsByTagName('li');
+        for (var i = 0; i < items.length; i++) {
+            items[i].onmouseover = function() {
+                var img = this.getElementsByTagName('img')[0];
+                img.style.display = 'block';
+                this.className = 'zindex';
+            }
+            items[i].onmouseout = function() {
+                var img = this.getElementsByTagName('img')[0];
+                img.style.display = 'none';
+                this.className = '';
+            }
+        }
+    }
+</script>
+</html>
