@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>复选框全选或反选</title>
+</head>
+<style>
+    body,
+    div,
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    body {
+        font-size: 12px;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+        padding: 10px;
+    }
+
+    li:first-child {
+        border-bottom: 1px solid black;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    .box {
+        width: 150px;
+        margin: 10px auto;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+
+    .box a {
+        margin-left: 5px;
+        text-decoration: none;
+        color: cornflowerblue;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <ul>
+            <li><input type="checkbox" value="全选"><label>全选</label><a href="#">反选</a></li>
+            <li><input type="checkbox"><label>选项（一）</label></li>
+            <li><input type="checkbox"><label>选项（二）</label></li>
+            <li><input type="checkbox"><label>选项（三）</label></li>
+            <li><input type="checkbox"><label>选项（四）</label></li>
+            <li><input type="checkbox"><label>选项（五）</label></li>
+            <li><input type="checkbox"><label>选项（六）</label></li>
+            <li><input type="checkbox"><label>选项（七）</label></li>
+            <li><input type="checkbox"><label>选项（八）</label></li>
+            <li><input type="checkbox"><label>选项（九）</label></li>
+            <li><input type="checkbox"><label>选项（十）</label></li>
+
+        </ul>
+    </div>
+    <p>1、切换全选/全不选文字；2、根据选中个数更新全选框状态；</p>
+</body>
+<script>
+    function isCheckAll(boxes, mark) {
+        for (var i = 1, n = 0; i < boxes.length; i++) {
+            boxes[i].checked && n++; // 用&&符号替代了if语句
+        }
+        boxes[0].checked = n == boxes.length-1;
+        mark.textContent = boxes[0].checked ? '全不选' : '全选';
+    } 
+    window.onload = function () {
+        var boxes = document.getElementsByTagName('input');
+        var notCheck = document.getElementsByTagName('a')[0];
+        var mark = document.getElementsByTagName('label')[0];
+        // 全选/全不选
+        boxes[0].onclick = function () {
+            for (var i = 1; i < boxes.length; i++) {
+                boxes[i].checked = this.checked;
+            }
+            isCheckAll(boxes, mark);
+        }
+        // 反选
+        notCheck.onclick = function () {
+            for(var i = 1; i < boxes.length; i++) {
+                boxes[i].checked = !boxes[i].checked;
+            }
+            isCheckAll(boxes, mark);
+        }
+        // 根据复选框状态更新全选框状态
+        for (var i = 1; i < boxes.length; i++) {
+            boxes[i].onclick = function () {
+                isCheckAll(boxes, mark);
+            }
+        }
+    }
+</script>
+
+</html>

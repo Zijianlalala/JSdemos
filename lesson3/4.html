@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>比较大小</title>
+</head>
+<style>
+    body {
+        font-size: 10px;
+    }
+
+    #outer {
+        width: 400px;
+        margin: 0 auto;
+    }
+    input {
+        width: 60px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    button {
+        margin-right: 10px;
+    }
+</style>
+
+<body>
+    <div id="outer">
+        <input type="text"><strong>vs</strong><input type="text"><button>最大的数是 >></button><strong>?</strong>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+        var inputs = document.getElementsByTagName('input');
+        var btn = document.getElementsByTagName('button')[0];
+        var result = document.getElementsByTagName('strong')[1];
+        for (var i=0; i<inputs.length;i++) {
+            inputs[i].onkeyup = function() {
+                this.value = this.value.replace(/[^\d]/,'');
+            }
+        }
+        btn.onclick = function() {
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].value == '') {
+                    alert('输入不能为空');
+                    return false;
+                }
+            }
+            var num1 = parseInt(inputs[0].value);
+            var num2 = parseInt(inputs[1].value);
+            result.textContent = num1 > num2 ? num1 : num2;
+        }
+        
+    }
+</script>
+</html>

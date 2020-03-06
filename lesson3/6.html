@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>判断数字是否是两位数</title>
+</head>
+<body>
+    <div id="outer">
+        <input type="text"> 
+        <button>是否是两位数</button>
+    </div>
+</body>
+<script>
+    function check(num) {
+        var i = 0;
+        while (num > 0) {
+            num = parseInt(num / 10);
+            i++;
+        }
+        return i;
+    }
+    window.onclick = function() {
+        var input = document.getElementsByTagName('input')[0];
+        input.onkeyup = function() {
+            this.value = this.value.replace(/[^\d]/,'');
+        }
+        var btn = document.getElementsByTagName('button')[0];
+            btn.onclick = function() {
+            var i = check(parseInt(input.value));
+            if (i == 2) {
+                alert('√ 是2位数！');
+            } else {
+                alert('× 是' + i + '位数。。')
+            }
+        }
+    }
+</script>
+</html>

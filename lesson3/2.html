@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用parseInt求和</title>
+</head>
+<style>
+    #outer {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    input {
+        width: 60px;
+
+    }
+</style>
+
+<body>
+    <div id="outer">
+        <input type="text">+<input type="text">=<label>?</label><button>求和</button>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        var numbers = document.getElementsByTagName('input');
+        var btn = document.getElementsByTagName('button')[0];
+        var result = document.getElementsByTagName('label')[0];
+        for (var i = 0; i < numbers.length; i++) {
+            numbers[i].onkeyup = function () {
+                this.value = this.value.replace(/[^(\d)]/, '')
+            }
+            btn.onclick = function () {
+                // 再转换为数组
+                result.textContent = parseInt(numbers[0].value) + parseInt(numbers[1].value);
+            }
+        }
+    }
+</script>
+</html>

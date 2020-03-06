@@ -1,0 +1,80 @@
+body,
+p,
+ul,
+div,
+strong,
+button {
+    padding: 0;
+    margin: 0;
+}
+/* 整体 */
+.outer {
+    width: 350px;
+    height: 450px;
+    margin: 10px auto;
+    background: #000;
+    border: 5px solid black;
+    border-radius: 5px;
+}
+/* 显示部分 */
+.top {
+    background: white;
+    text-align: right;
+    height: 90px;
+    overflow: hidden;
+}
+.top p {
+    font-weight: bold;
+    font-size: 10px;
+    margin: 0 5px 0 0 ;
+    height: 10px;
+}
+.top strong {
+    font-size: 55px;
+    margin:0 5px 0  10px;
+    /* padding-bottom: 5px; */
+}
+/* 按钮部分 */
+.bottom {
+    width: 350px;
+    height: 368px;
+    /* background: red; */
+    /* border: 2px solid white; */
+    position: relative;
+}
+ul {
+    list-style: none;
+    margin-left: 10px;
+}
+li {
+
+    float: left;
+    margin: 20px 0  0 10px;
+}
+.bottom button {
+    width: 70px;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+li .enter {
+    height: 120px;
+    background: orange;
+}
+li .big {
+    width: 150px;
+}
+.down{
+    position: absolute;
+    /* bottom: 10px; */
+    left: 0;
+    top: 280px;
+}
+.operator {
+    background: grey;
+}
+.current {
+    background: yellow !important;
+    color: blue !important;
+}
