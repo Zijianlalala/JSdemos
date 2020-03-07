@@ -74,9 +74,6 @@ li .big {
 .operator {
     background: grey;
 }
-.number {
-    background: #fff;
-}
 .current {
     background: yellow !important;
     color: blue !important;

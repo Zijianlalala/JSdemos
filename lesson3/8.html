@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>建议网页时钟</title>
+</head>
+<style>
+    body, div, input, strong {
+        padding: 0;
+        margin: 0;
+    }
+    body {
+        font-size: 20px;
+    }
+    #outer {
+        width: 350px;
+        height: 80px;
+        margin: 10px auto;
+        background: black;
+        text-align: center;
+        line-height: 80px;
+    }
+    input {
+        text-align: center;
+        width: 40px;
+        border: 2px solid white;
+    }
+    strong {
+        margin: 0 10px 0 10px;
+        color: white;
+    }
+</style>
+<body>
+    <div id="outer">
+        <input readonly="readonly" type="text"><strong>点</strong>
+        <input readonly="readonly" type="text"><strong>分</strong>
+        <input readonly="readonly" type="text"><strong>秒</strong>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+        var inputs = document.getElementsByTagName('input');
+        var updateTime = function() {
+            var date = new Date();
+            var s = date.toTimeString().slice(0, 8);
+            var times = s.split(':');
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].value = times[i];
+            }
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+    }
+</script>
+</html>

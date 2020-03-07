@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>导航栏</title>
+  </head>
+  <style>
+    body,
+    ul,
+    div,
+    p li {
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      font: 12px/1.5 Arial;
+    }
+    ul {
+      list-style: none;
+    }
+    #nav {
+      position: relative;
+      width: 910px;
+      height: 45px;
+      margin: 10px auto;
+    }
+    #nav ul {
+      /* overflow: hidden; */
+      margin-left: 10px;
+      padding-right: 10px;
+      background: blue;
+      border-radius: 5px;
+      height: 36px;
+      line-height: 36px;
+      color: white;
+    }
+    #nav ul li {
+      float: left;
+      text-align: center;
+      width: 110px;
+      border-radius: 10px;
+      margin-left: -2px;
+    }
+    #nav ul li a {
+      font-size: 14px;
+      color: #111;
+      width: 102px;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      margin: 0 2px 0 4px;
+    }
+    #nav ul li a:hover {
+      font-weight: 700;
+      background: pink;
+      color: black;
+      /* color: white; */
+    }
+    #nav .subnav {
+      display: none;
+      position: absolute;
+      top: 30px;
+      width: auto !important;
+      min-width: 110px;
+      height: 27px;
+      line-height: 27px;
+      white-space: nowrap;
+    }
+    #nav .subnav p {
+      margin-left: 10px;
+      padding-right: 10px;
+      background: grey;
+    }
+    #nav .subnav p span {
+      display: block;
+      color: #235e99;
+    }
+    #nav .subnav p a {
+      font-size: 12px;
+      /* 原来是这样实现的副标题啊 */
+      display: inline;
+      color: white;
+      text-decoration: none;
+      margin: 0 5px;
+      padding: 0 2px;
+    }
+    #nav .subnav p a:hover {
+      font-weight: 400;
+      background: green;
+      border-bottom: 2px solid;
+    }
+    #nav .subnav p .arrow {
+      position: absolute;
+      top: -4px;
+      display: block;
+      width: 11px;
+      height: 5px;
+      background: #000;
+    }
+  </style>
+  <body>
+    <div id="nav">
+      <ul class="main">
+        <li><a href="javascript:;">站长之家</a></li>
+        <li>
+          <a href="javascript:;">行业资讯</a>
+          <div class="subnav">
+            <em class="arrow"></em>
+            <p>
+              <span>
+                <a href="javascript:;">业界动态</a>|
+                <a href="javascript:;">收购融资</a>|
+                <a href="javascript:;">门户动态</a>|
+                <a href="javascript:;">搜索引擎</a>|
+                <a href="javascript:;">网络游戏</a>|
+                <a href="javascript:;">电子商务</a>|
+                <a href="javascript:;">广告传媒</a>|
+                <a href="javascript:;">厂商开发</a>
+              </span>
+            </p>
+          </div>
+        </li>
+        <li>
+          <a href="javascript:;">站长在线</a>
+          <div class="subnav">
+            <em class="arrow"></em>
+            <p>
+              <span>
+                <a href="javascript:;">业界动态</a>|
+                <a href="javascript:;">收购融资</a>|
+                <a href="javascript:;">门户动态</a>|
+                <a href="javascript:;">搜索引擎</a>|
+                <a href="javascript:;">网络游戏</a>|
+              </span>
+            </p>
+          </div>
+        </li>
+        <li>
+          <a href="javascript:;">网站运营</a>
+          <div class="subnav">
+            <em class="arrow"></em>
+            <p>
+              <span>
+                <a href="javascript:;">业界动态</a>|
+                <a href="javascript:;">收购融资</a>|
+                <a href="javascript:;">业界动态</a>|
+                <a href="javascript:;">收购融资</a>|
+                <a href="javascript:;">门户动态</a>|
+                <a href="javascript:;">搜索引擎</a>|
+                <a href="javascript:;">网络游戏</a>|
+              </span>
+            </p>
+          </div>
+        </li>
+        <li>
+          <a href="javascript:;">设计在线</a>
+          <div class="subnav">
+            <em class="arrow"></em>
+            <p>
+              <span>
+                <a href="javascript:;">业界动态</a>|
+                <a href="javascript:;">收购融资</a>|
+                <a href="javascript:;">业界动态</a>|
+                <a href="javascript:;">收购融资</a>|
+                <a href="javascript:;">门户动态</a>|
+                <a href="javascript:;">搜索引擎</a>|
+              </span>
+            </p>
+          </div>
+        </li>
+        <li><a href="javascript:;">网络编程</a></li>
+        <li><a href="javascript">联盟资讯</a></li>
+        <li><a href="javascript">服务器</a></li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    window.onload = function() {
+      var oLis = document.getElementsByTagName("li");
+      for (var i = 0; i < oLis.length; i++) {
+        oLis[i].onmouseover = function() {
+          var subnav = this.getElementsByTagName("div")[0];
+          if (subnav) {
+            subnav.style.display = "block";
+          }
+        };
+        oLis[i].onmouseout = function() {
+          var subnav = this.getElementsByTagName("div")[0];
+          if (subnav) {
+            subnav.style.display = "none";
+          }
+        };
+      }
+    };
+  </script>
+</html>
