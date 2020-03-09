@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>数组练习：各种数组方法的使用</title>
+    </head>
+    <style>
+        body,
+        div,
+        p,
+        button {
+            padding: 0;
+            margin: 0;
+        }
+        body {
+            font-size: 10px;
+        }
+        div {
+            margin-left: 10px;
+            padding: 10px;
+            border: 1px dotted red;
+            /* width: 1000px; */
+            /* height: 40px; */
+            line-height: 40px;
+            color: olive;
+            word-wrap: break-word;
+        }
+        button {
+            margin: 10px 0 10px 10px;
+            padding: 5px 10px 5px 10px;
+        }
+    </style>
+    <body>
+        <!-- <div id="box"> -->
+            <h2>数组操作练习</h2>
+            <div></div>
+            <button>删除January(1)</button>
+            <button>删除Decemeber(2)</button>
+            <div></div>
+            <button>复制</button>
+            <button>还原</button>
+            <div></div>
+            <button>还原</button>
+            <button>删除前三项</button>
+            <button>删除第二至第三项</button>
+            <button>在第二项后插入(orange,purple)</button>
+            <button>替换第二项和第三项</button>
+        <!-- </div> -->
+    </body>
+    <script>
+        window.onload = function() {
+            var months = "January(1),February(2),March(3),April(4),May(5),June(6),July(7),Aguest(8),September(9),October(10),November(11),December(12)".split(
+                ","
+            );
+            var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            var colors = "red,green,blue,white,yellow,black,brown".split(",");
+            var contents = [months, numbers, colors];
+            var aBtns = document.getElementsByTagName("button");
+            var aP = document.getElementsByTagName("div");
+            // 复制一个colors备份
+            var oldColors = []; 
+            for (var i = 0; i < colors.length; i++) oldColors.push(colors[i]);
+            // 显示预置内容
+            for (var i = 0; i < aP.length; i++) {
+                aP[i].innerHTML = contents[i].join(",");
+            }
+            // 删除January(1)
+            aBtns[0].onclick = function() {
+                if (months[0] == "January(1)") {
+                    months.shift();
+                    this.innerHTML = "添加January(1)";
+                } else {
+                    months.unshift("January(1)");
+                    this.innerHTML = "删除January(1)";
+                }
+                aP[0].innerHTML = months.join(",");
+            };
+            // 删除December(12)
+            aBtns[1].onclick = function() {
+                if (months[months.length - 1] == "December(12)") {
+                    months.pop();
+                    this.innerHTML = "添加Deccember(12)";
+                } else {
+                    months.push("December(12)");
+                    this.innerHTML = "删除December(12)";
+                }
+                aP[0].innerHTML = months.join(",");
+            };
+            // 复制
+            // TODO 怎么实现的宽度自适应？
+            aBtns[2].onclick = function() {
+                var n = numbers.length;
+                for (var i = 0; i < n; i++) {
+                    numbers.push(numbers[i]);
+                }
+                aP[1].innerHTML = numbers.join(',');
+            };
+            // 还原
+            aBtns[3].onclick = function() {
+                var oldLength = 10;
+                // slice(n1, n2)是删除从n1开始的n2个项，并返回之
+                numbers = numbers.slice(0, 10);
+                aP[1].innerHTML = numbers.join(',');
+            }
+            // 还原
+            aBtns[4].onclick = function(){
+                // colors = oldColors; // 重写colors，指向oldColors，不对，应该是复制内容过去
+                colors = [];
+                for (var i = 0; i < oldColors.length; i++) colors.push(oldColors[i]);
+                console.log(oldColors);
+                aP[2].innerHTML = colors.join(',');
+            }
+            // 删除前三项
+            aBtns[5].onclick = function(){
+                // colors = colors.slice(0, 3);
+                for(var i=0; i < 3; i++) colors.shift();
+                // console.log(c);
+                aP[2].innerHTML = colors.join(',');
+            }
+            // 删除第二至第三项
+            aBtns[6].onclick = function() {
+                // var top = colors.shift();
+                // for(var i=0;i<2;i++) colors.shift();
+                // colors.unshift(top);
+                colors.splice(1, 2);
+                aP[2].innerHTML = colors.join(',');
+            }
+            // 在第二项后插入(orange,purple)
+            aBtns[7].onclick = function() {
+                colors.splice(2, 0, 'orange','purple');
+                aP[2].innerHTML = colors.join(',');
+            }
+            // 替换第二项和第三项
+            aBtns[8].onclick = function(){
+                colors.splice(1, 2, '#009900', '0000ff');
+                aP[2].innerHTML = colors.join(',');
+            }
+
+        };
+    </script>
+</html>

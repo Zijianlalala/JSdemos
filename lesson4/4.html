@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arguments应用</title>
+</head>
+<body>
+    <h1>arguments应用——求出函数参数的总和</h1>
+</body>
+<script>
+    
+    function sum() {
+        var i = iResult = 0;
+        for (; i < arguments.length; i++) {
+            iResult += arguments[i];
+        }
+        return iResult;
+    }
+</script>
+</html>
