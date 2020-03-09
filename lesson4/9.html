@@ -122,6 +122,7 @@
                     oEm.innerHTML = title;
                     oDetail.textContent = detailText;
                     oPara.style.display = 'block';
+                    oPara.style.left = oUl.offsetLeft + this.offsetWidth * (this.index + 1) - 104 + 'px';
                 };
                 // 鼠标点击确定星星数和评分
                 aLi[i].onclick = function() {
