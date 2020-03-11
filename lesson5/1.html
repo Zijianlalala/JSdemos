@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模拟select控件</title>
+</head>
+<style>
+    body,
+    div,
+    img,
+    span,
+    button,
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font: 12px/1.5 Arial;
+        background: #23384e;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    #box {
+        width: 400px;
+        height: 40px;
+        border: 1px solid red;
+        margin: 10px auto;
+        border-radius: 5px;
+        position: relative;
+        line-height: 40px;
+        text-align: center;
+        background: blue;
+    }
+
+    /* #box span {
+        background: url(img/star.png) no-repeat;
+        background-position: 0 -28px;
+        width: 24px;
+        height: 30px;
+        border: 1px solid red;
+    } */
+    #box input {
+        width: 200px;
+        height: 30px;
+        border: 1px solid white;
+        padding: 0 5px;
+        border-radius: 5px;
+        background: grey;
+        cursor: pointer;
+    }
+
+    #box button {
+        margin-left: 10px;
+        border-radius: 5px;
+        width: 80px;
+        height: 25px;
+    }
+
+    #box ul {
+        top: 35px;
+        left: 47px;
+        position: absolute;
+        width: 210px;
+        border: 1px solid white;
+        text-align: left;
+        background: brown;
+        display: none;
+    }
+
+    #box li {
+        padding: 0 5px;
+        width: 200px;
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px dotted white;
+        cursor: pointer;
+    }
+
+    #box li.on {
+        background: pink;
+    }
+</style>
+
+<body>
+    <div id="box">
+        <!-- <span></span> -->
+        <input type="text" readonly value="选择游戏名称" />
+        <button>搜索</button>
+        <ul>
+            <li>地下城与勇士</li>
+            <li>魔兽世界（国服）</li>
+            <li>魔兽世界（台服）</li>
+            <li>热血江湖</li>
+            <li>神鬼传奇</li>
+            <li>大话西游II</li>
+            <li>QQ幻想世界</li>
+        </ul>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        var oSelect = document.getElementsByTagName("input")[0];
+        var oUl = document.getElementsByTagName("ul")[0];
+        var aLi = document.getElementsByTagName("li");
+        //显示和关闭下拉菜单
+        oSelect.onclick = function () {
+            var style = oUl.style;
+            style.display = style.display == "block"
+                ? "none"
+                : "block";
+            // 阻止事件冒泡
+            (event || window.event).cancelBubble = true;
+        };
+        // 选择游戏并确定
+        for (var i = 0; i < aLi.length; i++) {
+            aLi[i].onmouseover = function () {
+                this.className = "on";
+            };
+            aLi[i].onmouseout = function () {
+                this.className = "";
+            };
+            aLi[i].onclick = function () {
+                oSelect.value = this.textContent;
+                oUl.style.display = "none";
+            };
+        }
+        // TODO 点击其他地方使得ul消失
+        document.onclick = function() {
+            oUl.style.display = 'none';
+        }
+    };
+</script>
+
+</html>

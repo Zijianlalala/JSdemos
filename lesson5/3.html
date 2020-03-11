@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户按下键盘，显示keyCode</title>
+</head>
+<body>
+    <h1>这里将显示您按下键的keyCode：<span></span></h1>
+</body>
+<script>
+    window.onload = function() {
+        var oSpan = document.getElementsByTagName('span')[0];
+        document.onkeydown = function(event) {
+            var event = event || window.event;
+            oSpan.innerHTML = event.keyCode;
+            return false;
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跟随鼠标移动（大图显示）</title>
+</head>
+<style>
+    body, div, ul ,li {
+        padding: 0;
+        margin: 0;
+    }
+    html, body{overflow: hidden;}
+    #box ul{
+        border: 1px solid silver;
+        width: 768px;
+        height: 172px;
+        margin: 10px auto;
+        list-style: none;
+    }
+    #box li {
+        cursor: pointer;
+        margin:0 10px;
+        float: left;
+        width: 170px;
+        height: 170px;
+        /* display: inline; */
+        border: 1px solid #ddd;
+    }
+    li.on {
+        border: 1px solid #a10000;
+    }
+    #box li img {
+        /* display: none; */
+        width: 170;
+        height: 170px;
+        vertical-align: top;
+        /* border: 1px solid silver; */
+        /* position: absolute; */
+    }
+    #big {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border: 2px solid #ddd;
+        display: none;
+        margin: 0 10px;
+    }
+    #big div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 400px;
+        height: 400px;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        background: #fff url(img/loading.gif) 50% 50% no-repeat;
+
+    }
+
+</style>
+<body>
+    <div id="box">
+        <ul>
+            <li><img src="img/shirt_1.jpg"></li>
+            <li><img src="img/shirt_2.jpg"></li>
+            <li><img src="img/shirt_3.jpg"></li>
+            <li><img src="img/shirt_4.jpg"></li>
+        </ul>
+    </div>
+    <div id="big">
+        <div></div>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+        var oBig = document.getElementById('big');
+        var aLi = document.getElementsByTagName('li');
+        var oLoading = oBig.getElementsByTagName('div')[0];
+        var i=0;
+        for (i = 0; i < aLi.length; i++) {
+            aLi[i].index = i;
+            // 鼠标划过，预加载图片插入到容器并显示
+            aLi[i].onmouseover = function(){
+                var oImg = document.createElement('img');
+                // 图片预加载
+                var img = new Image();
+                img.src = oImg.src = aLi[this.index].getElementsByTagName('img')[0].src;
+                // 插入大图片
+                oBig.appendChild(oImg);
+                // 鼠标划过样式
+                this.className = 'on';
+                // 显示big
+                oBig.style.display = oLoading.style.display = 'block';
+                // 判断大图是否加载成功
+                img.complete?oLoading.style.display = 'none':(oImg.onload= function(){oLoading.style.display = 'none';})
+            }
+            aLi[i].onmousemove = function(event) {
+                var event = event || window.event;
+                // 当前页面的宽度-鼠标所在的横坐标=右边剩余宽度
+                var iWidth = document.documentElement.offsetWidth - event.clientX;
+                // 设置big的top值
+                oBig.style.top = event.clientY + 20 + 'px';
+                // 设置big的left值
+                oBig.style.left = (iWidth < oBig.offsetWidth + 10 ? event.clientX-oBig.offsetWidth -10:event.clientX+10) + 'px';
+            }
+            aLi[i].onmouseout = function() {
+                this.className = '';
+                oBig.style.display = 'none';
+                oBig.removeChild(oBig.lastChild);
+            }
+        }
+     }
+</script>
+</html>

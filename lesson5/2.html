@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>显示单击的坐标</title>
+</head>
+
+<body>
+    <h1>显示单击的坐标</h1>
+</body>
+<script>
+    window.onload = function() {
+        document.onclick = function () {
+        var event = event || window.event;
+        alert('坐标:[' + event.clientX + ',' + event.clientY + ']');
+    }
+    }
+</script>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用键盘控制div</title>
+</head>
+<style>
+    body,
+    div {
+        padding: 0;
+        margin: 0;
+    }
+
+    #box {
+        position: absolute;
+        top: 50px;
+        left: 300px;
+        background: red;
+        width: 110px;
+        height: 110px;
+    }
+</style>
+
+<body>
+    <div id="box"></div>
+</body>
+<script>
+    window.onload = function () {
+        var oBox = document.getElementById('box');
+        document.onkeydown = function (event) {
+            var event = event || window.event;
+            var realStyle = oBox.style;
+            var style = getComputedStyle(oBox);
+            var pattern = /\d+/;
+            switch (event.keyCode) {
+                case 37: // 左移
+                    if (style.left == '0px') return;
+                    var currentLeft = Number(pattern.exec(style.left)[0]);
+                    realStyle.left = currentLeft - 10 + 'px';
+                    break;
+                case 39: // 右移
+                    // if (style.left == '0px') return;
+                    var currentLeft = Number(pattern.exec(style.left)[0]);
+                    realStyle.left = currentLeft + 10 + 'px';
+                    break;
+                case 38: // 上移
+                    if (style.top == '0px') return;
+                    var currentTop = Number(pattern.exec(style.top)[0]);
+                    realStyle.top = currentTop - 10 + 'px';
+                    break;
+                case 40: // 下移
+                // if (style.top == '0px') return;
+                    var currentTop = Number(pattern.exec(style.top)[0]);
+                    realStyle.top = currentTop + 10 + 'px';
+                    break;
+            }
+        }
+    }
+</script>
+
+</html>

@@ -7,6 +7,16 @@
 
 以及`js`中实现二级导航位置的代码
 
+以及二级导航栏的位置要实时改变
+```
+// 判断显示区域 如果一级菜单的长度-菜单项的左侧位置的值大于子菜单的长度
+    oNav.offsetWidth - this.offsetLeft > oSubNav.offsetWidth
+    ? // 如果在显示范围居左显示
+    (oSubNav.style.left = this.offsetLeft + "px")
+    : // 超出显示范围居左显示
+    (oSubNav.style.right = 0);
+```
+
 ## case 2
 实现轮播图
 
